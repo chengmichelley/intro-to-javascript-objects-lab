@@ -51,10 +51,10 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-const starterPokemon = pokemon.filter(pokemon => pokemon.starter === true);
-console.log(starterPokemon)
+const pikachu = pokemon.find(p => p.name === 'Pikachu');
+console.log(pikachu)
 
-game.party.push(starterPokemon);
+game.party.push(pikachu);
 console.log(game.party)
 
 /*
@@ -106,12 +106,9 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-starterPokemon[0].name = 'Ivysaur';
-starterPokemon[1].name = 'Charmeleon';
-starterPokemon[2].name = 'Wartortle';
-starterPokemon[3].name = 'Raichu';
+pikachu.name = 'Raichu';
 
-console.log(starterPokemon)
+console.log(pikachu)
 
 /*
 Exercise 8
@@ -126,3 +123,14 @@ game.party.forEach(pokemon => {
     console.log(pokemon.name);
 });
 
+/*
+Exercise 9
+1. Can you print out all the starter Pokémon from the `pokemon` array?
+2. Think about how you can identify a starter Pokémon and then log their names.
+
+
+Solve Exercise 9 here:
+*/
+
+const starterPokemon = pokemon.filter(pokemon => pokemon.starter === true);
+console.log(starterPokemon)
