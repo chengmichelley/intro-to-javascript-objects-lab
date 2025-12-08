@@ -51,7 +51,6 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-
 const starterPokemon = pokemon.filter(pokemon => pokemon.starter === true);
 console.log(starterPokemon)
 
@@ -113,3 +112,17 @@ starterPokemon[2].name = 'Wartortle';
 starterPokemon[3].name = 'Raichu';
 
 console.log(starterPokemon)
+
+/*
+Exercise 8
+1. Print the name of each Pokémon in your party.
+2. Consider using a loop or an array method to access each Pokémon's name.
+
+Solve Exercise 8 here:
+*/
+
+
+game.party.forEach(pokemon => {
+    console.log(pokemon.name);
+});
+
