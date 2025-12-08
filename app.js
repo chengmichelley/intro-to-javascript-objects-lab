@@ -57,3 +57,18 @@ console.log(starterPokemon)
 
 game.party.push(starterPokemon);
 console.log(game.party)
+
+/*
+Exercise 5
+1. Choose three more Pokémon from the `pokemon` array and add them to your party.
+2. Consider different attributes like 'type' or 'HP' for your selection. Which array method will you use to add them?
+
+
+Solve Exercise 5 here:
+*/
+
+const newPokemonAdditions = pokemon.filter(pokemon => pokemon.hp > 130);
+console.log(newPokemonAdditions)
+
+game.party.push(newPokemonAdditions);
+console.log(game.party)
