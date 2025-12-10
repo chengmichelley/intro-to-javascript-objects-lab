@@ -38,9 +38,9 @@ Exercise 3
 Solve Exercise 3 here:
 */
 
-game.difficulty = ['Easy', 'Medium', 'Hard'];
+game.difficulty = 'Medium';
 
-console.log(game)
+console.log(game.difficulty)
 
 /*
 Exercise 4
@@ -51,10 +51,8 @@ Exercise 4
 Solve Exercise 4 here:
 */
 
-const pikachu = pokemon.find(p => p.name === 'Pikachu');
-console.log(pikachu)
-
-game.party.push(pikachu);
+const starterPokemon = pokemon.find(p => p.starter === true);
+game.party.push(starterPokemon);
 console.log(game.party)
 
 /*
@@ -66,10 +64,14 @@ Exercise 5
 Solve Exercise 5 here:
 */
 
-const newPokemonAdditions = pokemon.filter(pokemon => pokemon.hp > 130);
-console.log(newPokemonAdditions)
+const waterType = pokemon.find(p => p.type === 'fire');
 
-game.party.push(newPokemonAdditions);
+const highHp = pokemon.find(p => p.hp > 150);
+
+const dragonType = pokemon.find(p => p.type === 'dragon');
+
+game.party.push(waterType, highHp, dragonType);
+
 console.log(game.party)
 
 /*
@@ -106,9 +108,12 @@ More Hints: The existing starter Pokemon will be *replaced* in your party with t
 Solve Exercise 7 here:
 */
 
-pikachu.name = 'Raichu';
+const starterIndex = game.party.findIndex(p => p.starter);
+const starter = game.party[starterIndex];
+const evolved = pokemon.find(p => p.number === starter.number +1);
+game.party.splice(starterIndex, 1, evolved)
 
-console.log(pikachu)
+console.log(evolved)
 
 /*
 Exercise 8
@@ -132,8 +137,8 @@ Exercise 9
 Solve Exercise 9 here:
 */
 
-const starterPokemon = pokemon.filter(pokemon => pokemon.starter === true);
-console.log(starterPokemon)
+const starterPokemons = pokemon.filter(pokemon => pokemon.starter === true);
+console.log(starterPokemons)
 
 /*
 Exercise 10
@@ -152,7 +157,9 @@ game.catchPokemon = function(pokemonObj) {
     this.party.push(pokemonObj);
 };
 
-game.catchPokemon(pokemon[147]);
+const iceType = pokemon.find(p => p.type === 'ice')
+
+game.catchPokemon(iceType);
 
 console.log(game.party)
 
@@ -173,9 +180,15 @@ game.catchPokemon = function (pokemonObj) {
     this.party.push(pokemonObj);
     const pokeball = this.items.find(item => item.name === 'pokeball');
     pokeball.quantity -= 1;
+    if (pokeball.quantity <= 0) {
+        console.log('No more pokeballs!');
+        return;
+    };
 };
 
-game.catchPokemon(pokemon[86]);
+const psychicType = pokemon.find(p => p.type === 'psychic')
+
+game.catchPokemon(psychicType);
 console.log(game.party)
 console.log(game.items)
 
@@ -248,11 +261,7 @@ Solve Exercise 14 here:
 */
 
 game.partyCount = function () {
-    let count = 0;
-    game.party.forEach((pokemon) => { 
-    count++;
-    });
-    return count;
+    return this.party.length;
 };
 
 console.log(game.partyCount());
