@@ -344,3 +344,51 @@ const poisonType = pokemon.find(p => p.type === 'poison')
 game.catchPokemon(poisonType);
 console.log(game.items);
 console.log(game.collection);
+
+/*
+Exercise 19
+Copy the `catchPokemon` method that you just wrote above, and paste it below. The time has come to make it so that we cannot catch a Pokemon when we do not have any pokeballs to catch it with. 
+
+Modify the method so that if there are no pokeballs a message will be displayed that there are not enough pokeballs to catch the desired Pokemon.
+
+Also, ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 19 here:
+*/
+
+game.catchPokemon = function (pokemonObj) {
+    const pokeball = this.items.find(item => item.name === 'pokeball');
+    pokeball.quantity -= 1;
+    if (!pokeball || pokeball.quantity <= 0) {
+        console.log('No more pokeballs to catch Pokemon!');
+        return;
+    }
+
+    pokemon.quantity -= 1;
+
+    if (this.party.length < 6) {
+        this.party.push(pokemonObj);
+    } else {
+        this.collection.push(pokemonObj)
+    }
+    
+};
+
+const bugType = pokemon.find(p => p.type === 'bug');
+const groundType = pokemon.find(p => p.type === 'ground');
+const fightingType = pokemon.find(p => p.type === 'fighting');
+const fairyType = pokemon.find(p => p.type === 'fairy');
+const electricType = pokemon.find(p => p.type === 'electric');
+const rockType = pokemon.find(p => p.type === 'rock');
+
+game.catchPokemon(bugType);
+game.catchPokemon(groundType);
+game.catchPokemon(fightingType);
+game.catchPokemon(fairyType);
+game.catchPokemon(electricType);
+game.catchPokemon(rockType);
+
+
+console.log(game.collection);
+console.log(game.party);
+console.log(game.items);
