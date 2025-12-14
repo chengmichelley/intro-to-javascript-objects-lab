@@ -385,10 +385,50 @@ game.catchPokemon(bugType);
 game.catchPokemon(groundType);
 game.catchPokemon(fightingType);
 game.catchPokemon(fairyType);
-game.catchPokemon(electricType);
-game.catchPokemon(rockType);
+// game.catchPokemon(electricType);
+// game.catchPokemon(rockType);
 
 
 console.log(game.collection);
 console.log(game.party);
 console.log(game.items);
+
+/*
+Exercise 20
+Copy the `catchPokemon` method that you just wrote above, and paste it below. Modify is so that you can just pass in the name of a Pokemon instead of an entire object, and the method will look up the Pokemon from the data set for you.
+
+The string passed in should be allowed to be any case (for example, if the string 'PiKacHU' is passed to the function, it should match to 'Pikachu' in the data set). 
+
+If there is not a match, then return a string noting that the selected Pokemon does not exist. Ensure you do not decrement the pokeball count if an invalid Pokemon name is passed in, and also ensure that the Pokemon isn't added to the `game.party` or the `game.collection`.
+
+Solve Exercise 20 here:
+*/
+
+game.catchPokemon = function (pokemonNamed) {
+    pokemonNamed = pokemon.find(p => typeof p.name === 'string' && p.name.toLowerCase() === pokemonNamed.toLowerCase());
+    if(!pokemonNamed) {
+    return console.log('Pokemon does not exist!')};
+
+    const pokeball = this.items.find(item => item.name === 'pokeball');
+    pokeball.quantity -= 1;
+    if (!pokeball || pokeball.quantity <= 0) {
+        console.log('No more pokeballs to catch Pokemon!');
+        return; 
+    }
+
+    pokemon.quantity -= 1;
+    pokemon.pokemonNamed = 1;
+
+    if (this.party.length < 6) {
+        this.party.push(pokemonNamed.name);
+    } else {
+        this.collection.push(pokemonNamed.name);
+    }
+
+};
+
+game.catchPokemon('GrOwliThe');
+console.log(game.collection);
+console.log(game.party);
+console.log(game.items);
+game.catchPokemon('Milo');
